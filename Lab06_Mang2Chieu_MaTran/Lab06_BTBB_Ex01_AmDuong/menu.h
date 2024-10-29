@@ -52,19 +52,19 @@ void XuLyMenu(int menu, MaTran a, int& n)
 	case 4:
 		cout << endl << "4. Tinh gia tri S"<< endl;
 		XuatMaTran(a, n);
-		kq = TongS(a, n);
+		kq = TongSoDuongNhoNhatHang(a, n);
 		cout << "Tong S = " << kq;
 		break;
 	case 5:
 		cout << endl << "5. Tinh gia tri T" << endl;
 		XuatMaTran(a, n);
-		kq = TongT(a, n);
+		kq = TongSoAmLonNhatCot(a, n);
 		cout << "Tong T = " << kq;
 		break;
 	case 6:
 		cout << endl << "6. Tinh S - T" << endl;
 		kq = TinhT_S(a, n);
-		cout << "S - T = " << kq;
+		cout << "T - S = " << kq;
 		break;
 	default:
 		cout << endl << "Thoat khoi chuong trinh !";
