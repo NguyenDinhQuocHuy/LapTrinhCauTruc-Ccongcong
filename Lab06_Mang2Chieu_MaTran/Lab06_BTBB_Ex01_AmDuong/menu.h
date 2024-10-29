@@ -63,7 +63,7 @@ void XuLyMenu(int menu, MaTran a, int& n)
 		break;
 	case 6:
 		cout << endl << "6. Tinh S - T" << endl;
-		kq = TinhT_S(a, n);
+		kq = TinhS_T(a, n);
 		cout << "S - T = " << kq;
 		break;
 	default:
