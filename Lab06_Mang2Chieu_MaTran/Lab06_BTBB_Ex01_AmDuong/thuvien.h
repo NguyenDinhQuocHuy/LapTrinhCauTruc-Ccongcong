@@ -9,11 +9,8 @@ typedef int MaTran[SIZE][SIZE];
 void NhapMaTran(MaTran a, int n);
 void NhapTuDong(MaTran a, int n);
 void XuatMaTran(MaTran a, int n);
-bool KiemTraXuatHien(MaTran a, int n, int x);
-float SoDuongNhoNhatHang(MaTran a, int n, int i);
-float SoAmLonNhatCot(MaTran a, int n, int j);
-float TongS(MaTran a, int n);
-float TongT(MaTran a, int n);
+float TongSoDuongNhoNhatHang(MaTran a, int n);
+float TongSoAmLonNhatCot(MaTran a, int n);
 float TinhT_S(MaTran a, int n);
 
 // Dinh nghia ham
@@ -52,62 +49,36 @@ void XuatMaTran(MaTran a, int n)
 	cout << endl << endl;
 }
 
-bool KiemTraXuatHien(MaTran a, int n, int x)
+float TongSoDuongNhoNhatHang(MaTran a, int n)
 {
+	float tong = 0.0;
 	for (int i = 0; i < n; i++)
+	{
+		float min = -1.0;
 		for (int j = 0; j < n; j++)
-			if (a[i][j] == x)
-				return false;
-	return true;
+			if (a[i][j] > 0)
+				if (min == -1.0 || a[i][j] < min)
+					min = a[i][j];
+		if (min > 0)
+			tong += min;
+	}
+	return tong;
 }
 
-float SoDuongNhoNhatHang(MaTran a, int n, int i)
+float TongSoAmLonNhatCot(MaTran a, int n)
 {
-	float min;
-	for (int j = 0; j < n; j++)
-		if (a[i][j] > 0)
-		{
-			min = a[i][j];
-			break;
-		}
-
-	for (int j = 0; j < n; j++)
-		if (a[i][j] > 0 && a[i][j] < min)
-			min = a[i][j];
-	return min;
-}
-
-float SoAmLonNhatCot(MaTran a, int n, int j)
-{
-	float max;
+	float tong = 1.0;
 	for (int i = 0; i < n; i++)
-		if (a[i][j] < 0)
-		{
-			max = a[i][j];
-			break;
-		}
-	
-	for (int i = 0; i < n; i++)
-		if (a[i][i] < 0 && a[i][j] > max)
-	return max;
-}
-
-float TongS(MaTran a, int n)
-{
-	float s = 0;
-	for (int i = 0; i < n; i++)
+	{
+		float max = 1.0;
 		for (int j = 0; j < n; j++)
-				s += SoDuongNhoNhatHang(a, n, i);
-	return s;
-}
-
-float TongT(MaTran a, int n)
-{
-	float t = 0;
-	for (int j = 0; j < n; j++)
-		for (int i = 0; i < n; i++)
-				t += SoAmLonNhatCot(a, n, j);
-	return t;
+			if (a[i][j] < 0)
+				if (max == 1.0 || a[i][j] > max)
+					max = a[i][j];
+		if (max < 0)
+			tong += max;
+		return tong;
+	}
 }
 
 float TinhT_S(MaTran a, int n)
