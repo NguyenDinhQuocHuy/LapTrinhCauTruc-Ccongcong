@@ -7,6 +7,10 @@ typedef char Chuoi[MAX];
 unsigned int ChieuDai(Chuoi a);
 void XoaTatCaKyTu(Chuoi a, char k);
 void NoiChuoiTVaoSauChuoiS(Chuoi s, Chuoi t);
+void HoanVi(char &a, char &b);
+void SaoChep(Chuoi a, Chuoi b);
+void DaoNguocChuoi(Chuoi a);
+bool KiemTraChuoiDoiXung(Chuoi a);
 void HoaThuongXenKe(Chuoi a);
 void HoaThuongXenKe_C2(Chuoi a);
 
@@ -52,6 +56,82 @@ void NoiChuoiTVaoSauChuoiS(Chuoi s, Chuoi t)
 		j++;
 	}
 	s[i] = NULL;
+}
+
+void HoanVi(char &a, char &b)
+{
+	char c = a;
+	a = b;
+	b = c;
+}
+
+void SaoChep(Chuoi a, Chuoi b)
+{
+	int i = 0;
+	while (a[i] != NULL)
+	{
+		b[i] = a[i];
+		i++;
+	}
+	b[i] = NULL;
+}
+
+void DaoNguocChuoi(Chuoi a)
+{
+	int n = ChieuDai(a);
+	for (int i = 0; i < n / 2; i++)
+		HoanVi(a[i], a[n - i - 1]);
+}
+
+bool KiemTraChuoiDoiXung(Chuoi a)
+{
+	int n = ChieuDai(a);
+	for (int i = 0; i < n / 2; i++)
+		if (a[i] == a[n - i - 1])
+			return true;
+	return false;
+}
+
+void DoiDauCuoi(Chuoi a)
+{
+	int n = ChieuDai(a);
+	int dau = 0, cuoi = n - 1, k = 0;
+	int i, j;
+	Chuoi tam;
+
+	while (dau != ' ') dau++;
+	while (cuoi != ' ') cuoi--;
+
+	i = dau + 1, j = cuoi + 1;
+
+	while (a[j] != NULL)
+	{
+		tam[k] = a[j];
+		k++;
+		j++;
+	}
+	tam[k] = ' ';
+	k++;
+
+	while (i < cuoi)
+	{
+		tam[k] = a[i];
+		k++;
+		i++;
+	}
+	tam[k] = ' ';
+	k++;
+
+	i = 0;
+	while (i < dau)
+	{
+		tam[k] = a[i];
+		k++;
+		i++;
+	}
+	tam[k] = NULL;
+
+	SaoChep(tam, a);
 }
 
 void HoaThuongXenKe(Chuoi a)
