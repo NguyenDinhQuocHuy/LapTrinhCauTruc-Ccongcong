@@ -81,7 +81,11 @@ void XuLyMenu(int menu)
 		cin.ignore(1);
 		gets_s(s);
 
-		
+		dungSai = KiemTraChuoiDoiXung(s);
+if (dungSai == true)
+	cout << endl << "Chuoi tren la chuoi doi xung !";
+else if (dungSai == false)
+	cout << endl << "Chuoi tren khong la chuoi doi xung !";
 		break;
 	case 5:
 		cout << endl << "5. So sanh 2 chuoi s va t theo thu tu tu dien ( Co phan biet HOA - thuong )" << endl;
@@ -98,8 +102,8 @@ void XuLyMenu(int menu)
 		cout << endl << "Nhap 1 chuoi : ";
 		cin.ignore(1);
 		gets_s(s);
-
-		
+		DoiDauCuoi(s);
+		cout << endl << s;
 		break;
 	case 7:
 		cout << endl << "7. Doi chu HOA - thuong xen ke" << endl;
